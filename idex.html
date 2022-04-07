@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1">
+    <title>MerkleTree</title>
+    <script src="https://cdn.jsdelivr.net/npm/keccak256@latest/keccak256.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/merkletreejs@latest/merkletree.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    const address = ["0x9E4B9f229B5da65e5C8ED11A80C71cAcc8B988ad","0xfE8D787fc64bf1A7FBBC4A6e3FcA973259442549",
+"0x42299d75911Bc95D84258b442C78F35e333DE2cC","0xB353F30483635bf84c057F223F24840cB588c0A9",
+"0x2a1D2E319e4BdDb5d09b6f2B50e22C53305EB51d","0x70e8854279C30b06803a604aff88017951c35e70",
+"0xFF90AB5bE97aB9B47eE523999Ff71aC07911557f","0x82BABE2e2bba25C9e0943d8c0B64dc649E0c127F",
+"0xA98C78Ab32353b29573FC70fC8ff7Ad25AAd467f","0x25607E457554Ef63a73894CFF68a07743C8B6D2F",
+"0x56749F709A77A387344196C311a6569c39Ad1738"]
+    const leaves = address.map(x => keccak256(x)) // generate leaves 
+    const tree = new MerkleTree(leaves, keccak256, { sortPairs: true}) // generate MerkleTree
+    const buf2hex = x => '0x' + x.toString('hex') // buffer to hexadecimal
+
+    console.log(buf2hex(tree.getRoot())) // the Root
+
+    const leaf  = keccak256(address) // wallet address from metamask
+    const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
+
+    contract.methods.safeMint(address, proof).send({ from: address }) // call minting
+</script>
+</body>
+</html>
