@@ -13,7 +13,7 @@ module.exports = {
        provider: function() {
          return new HDWalletProvider(
             privateKeys.split(','), // Array of account private keys
-            `https://eth-kovan.alchemyapi.io/v2/${process.env.KOVAN_ALCHEMY_API_KEY}` // URL to an Ethereum Node - Infura
+            `https://eth-kovan.alchemyapi.io/v2/${process.env.KOVAN_ALCHEMY_API_KEY}` // URL to an Ethereum Node - Alchemy
          )
        },
        gas: 5000000,
