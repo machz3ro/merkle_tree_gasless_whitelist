@@ -9,15 +9,27 @@
 </head>
 <body>
 <script type="text/javascript">
-    const address = ["0x9E4B9f229B5da65e5C8ED11A80C71cAcc8B988ad","0xfE8D787fc64bf1A7FBBC4A6e3FcA973259442549",
-"0x42299d75911Bc95D84258b442C78F35e333DE2cC","0xB353F30483635bf84c057F223F24840cB588c0A9",
-"0x2a1D2E319e4BdDb5d09b6f2B50e22C53305EB51d","0x70e8854279C30b06803a604aff88017951c35e70",
-"0xFF90AB5bE97aB9B47eE523999Ff71aC07911557f","0x82BABE2e2bba25C9e0943d8c0B64dc649E0c127F",
-"0xA98C78Ab32353b29573FC70fC8ff7Ad25AAd467f","0x25607E457554Ef63a73894CFF68a07743C8B6D2F",
-"0x56749F709A77A387344196C311a6569c39Ad1738"]
-    const leaves = address.map(x => keccak256(x)) // generate leaves 
+    const addresses = [
+    "0x3103A3868dFc5c76f97a15db0eBE9574d888eE74",
+    "0x2EEed0b3Fa4F11F4c899967E67A8866AB0a569BF",
+    "0x3415A027f622c635Fb4Fc591eC41ED0368e29A43",
+    "0xD8397F00daed82bf120BB2De5aa3307f892e0DEb",
+    "0x15DcC5c3d7EecFfDb62FA4ee36277E9f9F8e235c",
+    "0x557AE1B77d25De555c8CDBCD4f78B1f53905276e",
+    "0xd827Aa16c933fe88491c15b70A1848FEDdCbF162",
+    "0x78d7F1845ebaF20F11a7fB2D7aB73b323D88B316",
+    "0xE6E4494f1780031C755adD8D6097Dc1Fb4Bb0887",
+    "0xa07DE7Bb48674d16B7FB0bb85c01E6912F6DeDBb",
+    "0xd8bAE1f986997d5a9cB8C1C66C458dE2c666cD99",
+    "0x8A08bB72a02bb702d0509CF010233970e532D358",
+    "0x747E69DcD0DcE2B65Bce830BC607E90e32027485",
+    "0x2e9B42562476e0f2dBD2885f7687D7B4FFc6AAE8",
+    "0xDaB8c9dD1aAB6DE2bD4B1Ab34d3475ADA6fE9bf4",
+    "0x56749F709A77A387344196C311a6569c39Ad1738"
+    ]
+    const leaves = addresses.map(x => keccak256(x)) // generate leaves 
     const tree = new MerkleTree(leaves, keccak256, { sortPairs: true}) // generate MerkleTree
-    const buf2hex = x => '0x' + x.toString('hex') // buffer to hexadecimal
+    const buf2hex = x => "0x" + x.toString("hex") // buffer to hexadecimal
 
     console.log(buf2hex(tree.getRoot())) // the Root
 

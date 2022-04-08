@@ -1,5 +1,5 @@
-const AlphaTree = artifacts.require('AlphaTree');
+const alphatree = artifacts.require("AlphaTree");
 
 module.exports = (deployer,) => {
-    deployer.deploy(AlphaTree,'AlphaTree','APT');
+    deployer.deploy(alphatree, "AlphaTree");
 };
