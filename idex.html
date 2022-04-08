@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewpoint" content="width=device-width, initial-scale=1">
-    <title>MerkleTree</title>
-    <script src="https://cdn.jsdelivr.net/npm/keccak256@latest/keccak256.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/merkletreejs@latest/merkletree.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MerkleTree</title>
+  <script src="https://cdn.jsdelivr.net/npm/merkletreejs@latest/merkletree.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/keccak256@latest/keccak256.js"></script>
 </head>
 <body>
 <script type="text/javascript">
     const addresses = [
-    "0x3103A3868dFc5c76f97a15db0eBE9574d888eE74",
-    "0x2EEed0b3Fa4F11F4c899967E67A8866AB0a569BF",
-    "0x3415A027f622c635Fb4Fc591eC41ED0368e29A43",
-    "0xD8397F00daed82bf120BB2De5aa3307f892e0DEb",
-    "0x15DcC5c3d7EecFfDb62FA4ee36277E9f9F8e235c",
-    "0x557AE1B77d25De555c8CDBCD4f78B1f53905276e",
-    "0xd827Aa16c933fe88491c15b70A1848FEDdCbF162",
-    "0x78d7F1845ebaF20F11a7fB2D7aB73b323D88B316",
-    "0xE6E4494f1780031C755adD8D6097Dc1Fb4Bb0887",
-    "0xa07DE7Bb48674d16B7FB0bb85c01E6912F6DeDBb",
-    "0xd8bAE1f986997d5a9cB8C1C66C458dE2c666cD99",
-    "0x8A08bB72a02bb702d0509CF010233970e532D358",
-    "0x747E69DcD0DcE2B65Bce830BC607E90e32027485",
-    "0x2e9B42562476e0f2dBD2885f7687D7B4FFc6AAE8",
-    "0xDaB8c9dD1aAB6DE2bD4B1Ab34d3475ADA6fE9bf4",
-    "0x56749F709A77A387344196C311a6569c39Ad1738"
+    "0x11EE9EcF6bcf08Ee34815E8faabE8f8228aFE974",
+    "0xD95E7bAc85D7D5d3845D2F66Df3C013C837805E0",
+    "0x0f4D93724108445888D49a7824F2aaf30f9f1037",
+    "0x7f5d28f9Cb7Cea454f4A3166ee4144dbc6ECAEf6",
+    "0x48738b6dEb2c930AAf24c78ecb6B2d0b44cc8De1",
+    "0x843CfA4D33bfafA5d77d0075c9f74142557b1FC4",
+    "0xA7155dd17E1F02cF6D89353D0e8c48470F0B54a6",
+    "0x7f132730566503795051b4Ccd6ED7AB87cADCb84",
+    "0x56749F709A77A387344196C311a6569c39Ad1738",
+    "0xCff04529eAd70Dd00006F0daa493b0B1e398150A"
     ]
     const leaves = addresses.map(x => keccak256(x)) // generate leaves 
-    const tree = new MerkleTree(leaves, keccak256, { sortPairs: true}) // generate MerkleTree
-    const buf2hex = x => "0x" + x.toString("hex") // buffer to hexadecimal
+    const tree = new MerkleTree(leaves, keccak256, { sortPairs: true }) // generate MerkleTree
+    const buf2hex = x => '0x' + x.toString('hex') // buffer to hexadecimal
 
     console.log(buf2hex(tree.getRoot())) // the Root
 
-    const leaf  = keccak256(address) // wallet address from metamask
+    const leaf = keccak256(address) // wallet address from metamask
     const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
 
     contract.methods.safeMint(address, proof).send({ from: address }) // call minting
