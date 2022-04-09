@@ -10,25 +10,25 @@
 <body>
 <script type="text/javascript">
     const addresses = [
-    "0x11EE9EcF6bcf08Ee34815E8faabE8f8228aFE974",
-    "0xD95E7bAc85D7D5d3845D2F66Df3C013C837805E0",
-    "0x0f4D93724108445888D49a7824F2aaf30f9f1037",
-    "0x7f5d28f9Cb7Cea454f4A3166ee4144dbc6ECAEf6",
-    "0x48738b6dEb2c930AAf24c78ecb6B2d0b44cc8De1",
-    "0x843CfA4D33bfafA5d77d0075c9f74142557b1FC4",
-    "0xA7155dd17E1F02cF6D89353D0e8c48470F0B54a6",
-    "0x7f132730566503795051b4Ccd6ED7AB87cADCb84",
-    "0x56749F709A77A387344196C311a6569c39Ad1738",
-    "0xCff04529eAd70Dd00006F0daa493b0B1e398150A"
+    "0x56749F709A77A387344196C311a6569c39Ad1738",  
+    "0x08B0B987d3d9079E95d47Ad71E6719F53cadC361",
+    "0x981c8d1F4A180a71B4cdcABb365B0DeDeB96929a",
+    "0xB7B0E4C3c1a3D38E44E21306126e84E0C6632b02",
+    "0x5e6E83870dFA2297166b93EacD6EeC0977Ee3067",
+    "0x5832dCfcd400686415084472659088EF5C339CbC",
+    "0x56Fa164cBBf054539bad85311c9996E1402a5165",
+    "0x85d856F200B39b1a8a55D70c6d722De62467F115",
+    "0x04fb74a63e1dC1c70921312c74297aD8d015219C",
+    "0xd9145CCE52D386f254917e481eB44e9943F39138"
     ]
     const leaves = addresses.map(x => keccak256(x)) // generate leaves 
     const tree = new MerkleTree(leaves, keccak256, { sortPairs: true }) // generate MerkleTree
     const buf2hex = x => '0x' + x.toString('hex') // buffer to hexadecimal
-
     console.log(buf2hex(tree.getRoot())) // the Root
 
     const leaf = keccak256(address) // wallet address from metamask
     const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
+    console.log(tree.toString()) // Displays the tree
 
     contract.methods.safeMint(address, proof).send({ from: address }) // call minting
 </script>

@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 contract AlphaTree is ERC721, Ownable {
     using Counters for Counters.Counter;
-    bytes32 public root = 0x6cd5669b00d06c87e4a57139f59e76bc4faf16625c6418eb487c65882075faba;
+    bytes32 public root = 0x2c6bcf8d37c1a069c5fb0251c5d5bca62124fb4528327d969973b691ad9fb564;
 
     Counters.Counter private _tokenIdCounter;
 
